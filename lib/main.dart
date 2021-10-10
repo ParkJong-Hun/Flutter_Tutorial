@@ -1,113 +1,51 @@
+//flutter/material.dart : 앱을 구현하기 위해 꼭 가져와야하는 라이브러리.
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+//main : 앱에서 가장 먼저 실행되는 함수.
+//=> : 식이 하나만 포함된 함수를 약식으로 사용하는 것.
+//runApp : Flutter의 최상위 함수. 위젯을 argument로 갖음. Widget을 매개로 앱을 실행 함.
+//MyApp : CustomWidget. runApp에서 실행되는 구현할 최상위 위젯.
+//함수는 보통 소문자로 시작, 클래스는 보통 대문자로 시작하는 것이 약속.
+void main() => runApp(MyApp());
 
+//Flutter에서 stl을 입력하면 StatelessWidget을 상속받는 클래스의 틀이 자동으로 생성됨.
+//build라는 Widget을 override함. build는 BuildContext를 갖고 있으며, Container를 반환함.
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return MaterialApp(//최상위 위젯의 직계 자식으로 위치하는 위젯으로 최상위 위젯을 제외한 모든 위젯을 자식으로 포함함.
+      title: "First app",//앱의 제목을 설정.
+      theme: ThemeData(//앱의 기본 테마를 설정.
+        //앱에서 사용할 대표 색상.
+        primarySwatch: Colors.blue
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //앱의 홈(가장 처음 실행되는 곳)의 경로 설정.
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Scaffold(//비계(건물의 철근) 같은 역할을 하는 위젯. 빈 도화지 같은 개념(iOS의 View, Android의 Layout과 비슷하다.)
+      appBar: AppBar(//앱의 상단 부분(Toolbar, Title 같은 느낌)
+        title: Text("First app"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+      //Scaffold의 가장 중요한 부분. appbar를 제외한 대부분의 공간으로,내용을 담는 부분.
+      body: Center(//자식 위젯을 body의 중앙으로 정렬.
+        // 정렬 받을 위젯.
+      child: Column(//1개 이상의 자식 위젯을 세로로 배치.
+          children: [//배치 될 위젯(들).
+            Text('Hello'),//문자를 화면에 출력하기 위한 위젯.
+            Text('World!')
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
