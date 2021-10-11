@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -9,41 +8,54 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "PJH Profile",
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: MyCard(),
+      title: 'PJH Profile',
+      home: Grade(),
     );
   }
 }
 
-class MyCard extends StatelessWidget {
-  const MyCard({Key? key}) : super(key: key);
+class Grade extends StatelessWidget {
+  const Grade({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white70,
       appBar: AppBar(
-        title: Text("PJH"),
-        //타이틀을 appBar 중앙에 배치할 것인지
-        centerTitle: true,
-        //appBar의 색상 결정
+        title: Text('PJH',
+          style: TextStyle(
+            color: Colors.yellow
+          ),
+        ),
         backgroundColor: Colors.black54,
-        //appBar의 Flat함을 결정
+        centerTitle: true,
         elevation: 0.0,
       ),
-      body: Center(//위젯의 가장자리에 빈 공간을 만듦.
-        //Padding의 Argument
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30.0, 40.0, 0.0, 0.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,//축 기준 정렬
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hello'),
-            Text('Hello'),
-            Text('Hello')
+            Text("Name",
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 2.0
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text("Park JongHun",
+              style: TextStyle(
+                color: Colors.yellow,
+                letterSpacing: 2.0,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold
+              )
+            ),
           ],
         ),
-      ),
+      )
     );
   }
 }
